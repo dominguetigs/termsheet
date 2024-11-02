@@ -36,6 +36,9 @@ $term-sheet-challenge-theme: mat.define-theme(
 // Comment out the line below if you want to use the deprecated `color` inputs.
 // @include mat.color-variants-backwards-compatibility($term-sheet-challenge-theme);
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html,
 body {
@@ -44,4 +47,18 @@ body {
 body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  // background-color: rgba(241, 245, 249, 1);
+
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 100%;
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.mat-mdc-header-row,
+.mat-mdc-row {
+  background-color: white !important;
 }

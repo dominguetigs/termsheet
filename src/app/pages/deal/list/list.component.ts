@@ -27,7 +27,6 @@ import { DealTableDataSource } from './table-data-source';
     MatTableModule,
   ],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.scss',
 })
 export class DealListComponent implements OnInit {
   @ViewChild('filter', { static: true })
@@ -62,6 +61,15 @@ export class DealListComponent implements OnInit {
       noi: 10000,
       capRate: 0.1,
     });
+  }
+
+  clearFilter(): void {
+    if (!this.dataSource) {
+      return;
+    }
+
+    this.filter.nativeElement.value = '';
+    this.dataSource.filter = '';
   }
 
   trackByFn(index: number): any {
