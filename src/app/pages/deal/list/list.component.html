@@ -1,0 +1,53 @@
+<div class="header-actions">
+  <mat-form-field class="search-input">
+    <mat-icon class="icon-size-5" fontIcon="search" matPrefix></mat-icon>
+    <input matInput #filter placeholder="Search..." [autocomplete]="'off'" />
+  </mat-form-field>
+
+  <button mat-button aria-label="Add deal button" (click)="addDeal()">Add</button>
+</div>
+
+<table class="w-full bg-transparent" mat-table [dataSource]="dataSource!" [trackBy]="trackByFn">
+  <!-- Name -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let deal">
+      <span>{{ deal.name }}</span>
+    </td>
+  </ng-container>
+
+  <!-- Address -->
+  <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef>Address</th>
+    <td mat-cell *matCellDef="let deal">
+      <span>{{ deal.address }}</span>
+    </td>
+  </ng-container>
+
+  <!-- Purchase price -->
+  <ng-container matColumnDef="purchasePrice">
+    <th mat-header-cell *matHeaderCellDef>Purchase price</th>
+    <td mat-cell *matCellDef="let deal">
+      <span>{{ deal.purchasePrice | currency }}</span>
+    </td>
+  </ng-container>
+
+  <!-- NOI -->
+  <ng-container matColumnDef="noi">
+    <th mat-header-cell *matHeaderCellDef>NOI</th>
+    <td mat-cell *matCellDef="let deal">
+      <span>{{ deal.noi | currency }}</span>
+    </td>
+  </ng-container>
+
+  <!-- Cap Rate -->
+  <ng-container matColumnDef="capRate">
+    <th mat-header-cell *matHeaderCellDef>Cap rate</th>
+    <td mat-cell *matCellDef="let deal">
+      <span>{{ deal.capRate }}</span>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns" @fadeInTop></tr>
+</table>
