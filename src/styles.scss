@@ -62,3 +62,14 @@ body {
 .mat-mdc-row {
   background-color: white !important;
 }
+
+.mat-column-noDataColumn {
+  &.mat-mdc-cell {
+    border-bottom: 0 !important;
+  }
+}
+
+.mat-mdc-cell,
+.mat-mdc-header-cell {
+  @apply border-b-gray-200 #{'!important'};
+}

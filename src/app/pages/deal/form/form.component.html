@@ -1,0 +1,72 @@
+<h2 mat-dialog-title>Install Angular</h2>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="form" (ngSubmit)="onSave()">
+    <div class="flex flex-col md:flex-row gap-4">
+      <mat-form-field class="mb-1">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Main St Apartments" />
+
+        @if (form.get('name')?.invalid && (form.get('name')?.touched || form.get('name')?.dirty)) {
+          <mat-error> Name is required. </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="mb-1">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address" placeholder="123 Main St" />
+
+        @if (
+          form.get('address')?.invalid &&
+          (form.get('address')?.touched || form.get('address')?.dirty)
+        ) {
+          <mat-error> Address is required. </mat-error>
+        }
+      </mat-form-field>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-4">
+      <mat-form-field class="mb-1">
+        <mat-label>Purchase price</mat-label>
+        <input
+          matInput
+          formControlName="purchasePrice"
+          placeholder="$1,000,000"
+          mask="separator.2"
+          prefix="$"
+          thousandSeparator=","
+          decimalMarker="."
+        />
+
+        @if (
+          form.get('purchasePrice')?.invalid &&
+          (form.get('purchasePrice')?.touched || form.get('purchasePrice')?.dirty)
+        ) {
+          <mat-error> Purchase price is required. </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="mb-1">
+        <mat-label>NOI</mat-label>
+        <input
+          matInput
+          formControlName="noi"
+          placeholder="$100,000"
+          mask="separator.2"
+          prefix="$"
+          thousandSeparator=","
+          decimalMarker="."
+        />
+
+        @if (form.get('noi')?.invalid && (form.get('noi')?.touched || form.get('noi')?.dirty)) {
+          <mat-error> NOI is required. </mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button type="submit" [disabled]="form.invalid" (click)="onSave()">Save</button>
+</mat-dialog-actions>

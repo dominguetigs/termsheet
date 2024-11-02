@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -14,6 +15,7 @@ import { DealService } from '@services/deal.service';
 
 import { Deal } from '../../../types/deal';
 import { DealTableDataSource } from './table-data-source';
+import { DealFormDialogComponent } from '../form/form.component';
 
 @Component({
   selector: 'app-deal-list',
@@ -31,6 +33,8 @@ import { DealTableDataSource } from './table-data-source';
 export class DealListComponent implements OnInit {
   @ViewChild('filter', { static: true })
   filter!: ElementRef<HTMLInputElement>;
+
+  readonly dialog = inject(MatDialog);
 
   dataSource!: DealTableDataSource | null;
   displayedColumns!: Array<keyof Deal>;
@@ -54,13 +58,7 @@ export class DealListComponent implements OnInit {
   }
 
   addDeal(): void {
-    this._dealService.addDeal({
-      name: 'New Deal',
-      address: '123 New Deal St',
-      purchasePrice: 100000,
-      noi: 10000,
-      capRate: 0.1,
-    });
+    this.dialog.open(DealFormDialogComponent);
   }
 
   clearFilter(): void {
@@ -72,7 +70,16 @@ export class DealListComponent implements OnInit {
     this.dataSource.filter = '';
   }
 
-  trackByFn(index: number): any {
+  highlight(text: string): string {
+    if (!this.dataSource?.filter) {
+      return text;
+    }
+
+    const regex = new RegExp(`(${this.dataSource.filter})`, 'gi');
+    return text.replace(regex, '<span class="bg-yellow-300">$1</span>');
+  }
+
+  trackByFn(index: number): number {
     return index;
   }
 }
