@@ -1,5 +1,5 @@
 <div class="flex flex-col flex-auto min-w-0">
-  <div class="flex items-center justify-between gap-4 pt-8 px-6 md:px-8 border-b">
+  <div class="flex items-center justify-between gap-4 pt-8 px-6 md:px-8">
     <mat-form-field class="w-full">
       <mat-icon fontIcon="search" matPrefix></mat-icon>
       <input matInput #filter placeholder="Search..." [autocomplete]="'off'" />
@@ -18,9 +18,32 @@
       Add
     </button>
   </div>
+
+  <div class="flex gap-4 px-6 md:px-8">
+    <mat-form-field>
+      <mat-label>Filter by price</mat-label>
+      <mat-select [value]="priceCondition()" (selectionChange)="onChangePriceCondition($event)">
+        <mat-option value="greater">Greater than</mat-option>
+        <mat-option value="less">Less than</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Price</mat-label>
+      <input
+        matInput
+        #filterByPrice
+        placeholder="$100,000"
+        mask="separator.2"
+        prefix="$"
+        thousandSeparator=","
+        decimalMarker="."
+      />
+    </mat-form-field>
+  </div>
 </div>
 
-<div class="flex-auto p-6 md:p-8">
+<div class="flex-auto p-6 md:p-8 border-t">
   <div
     class="xl:col-span-2 flex flex-col flex-auto bg-card shadow-lg rounded-md overflow-hidden bg-white"
   >
