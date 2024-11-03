@@ -108,11 +108,11 @@ export class DealTableDataSource extends DataSource<any> {
       const filterByPrice = parsePrice(priceValue);
 
       if (priceCondition === 'greater') {
-        return item.purchasePrice > +filterByPrice;
+        return item.purchasePrice > filterByPrice;
       }
 
       if (priceCondition === 'less') {
-        return item.purchasePrice < +filterByPrice;
+        return item.purchasePrice < filterByPrice;
       }
 
       return true;
