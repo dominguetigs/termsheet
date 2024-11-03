@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+
+import { Subject, takeUntil } from 'rxjs';
 
 import { NgxMaskDirective } from 'ngx-mask';
 
@@ -35,8 +37,10 @@ import { Deal } from '../../../types/deal';
   ],
   templateUrl: './form.component.html',
 })
-export class DealFormDialogComponent implements OnInit {
+export class DealFormDialogComponent implements OnInit, OnDestroy {
   form: FormGroup;
+
+  private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   constructor(
     public dialogRef: MatDialogRef<DealFormDialogComponent>,
@@ -58,8 +62,19 @@ export class DealFormDialogComponent implements OnInit {
       this.form.patchValue(this.data);
     }
 
-    this.form.get('noi')?.valueChanges.subscribe(() => this._calculateCapRate());
-    this.form.get('purchasePrice')?.valueChanges.subscribe(() => this._calculateCapRate());
+    this.form
+      .get('noi')
+      ?.valueChanges.pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(() => this._calculateCapRate());
+    this.form
+      .get('purchasePrice')
+      ?.valueChanges.pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(() => this._calculateCapRate());
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribeAll.next(null);
+    this._unsubscribeAll.complete();
   }
 
   onSave(): void {

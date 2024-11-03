@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnDestroy, OnInit, signal, ViewChild } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 
-import { debounceTime, distinctUntilChanged, fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged, fromEvent, Subject, takeUntil } from 'rxjs';
 
 import { DealService } from '@services/deal.service';
 
@@ -36,7 +36,7 @@ import { DealFormDialogComponent } from '../form/form.component';
   ],
   templateUrl: './list.component.html',
 })
-export class DealListComponent implements OnInit {
+export class DealListComponent implements OnInit, OnDestroy {
   @ViewChild('filter', { static: true })
   filter!: ElementRef<HTMLInputElement>;
 
@@ -49,6 +49,8 @@ export class DealListComponent implements OnInit {
   displayedColumns!: Array<keyof Deal>;
   priceCondition = signal<PriceConditions>('greater');
 
+  private _unsubscribeAll: Subject<any> = new Subject<any>();
+
   constructor(private _dealService: DealService) {
     this.displayedColumns = ['name', 'address', 'purchasePrice', 'noi', 'capRate'];
   }
@@ -57,7 +59,7 @@ export class DealListComponent implements OnInit {
     this.dataSource = new DealTableDataSource(this._dealService);
 
     fromEvent(this.filter?.nativeElement, 'keyup')
-      .pipe(debounceTime(150), distinctUntilChanged())
+      .pipe(debounceTime(150), distinctUntilChanged(), takeUntil(this._unsubscribeAll))
       .subscribe(() => {
         if (!this.dataSource) {
           return;
@@ -67,7 +69,7 @@ export class DealListComponent implements OnInit {
       });
 
     fromEvent(this.filterByPrice?.nativeElement, 'keyup')
-      .pipe(debounceTime(150), distinctUntilChanged())
+      .pipe(debounceTime(150), distinctUntilChanged(), takeUntil(this._unsubscribeAll))
       .subscribe(() => {
         if (!this.dataSource) {
           return;
@@ -75,6 +77,11 @@ export class DealListComponent implements OnInit {
 
         this._updateFilterByPrice();
       });
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribeAll.next(null);
+    this._unsubscribeAll.complete();
   }
 
   addDeal(): void {
