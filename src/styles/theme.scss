@@ -1,0 +1,52 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$term-sheet-custom-palette-primary: (
+  50: #ffe8e0,
+  100: #ffc2b3,
+  200: #ff9b80,
+  300: #ff734d,
+  400: #ff4c29,
+  500: #f97316,
+  600: #e56814,
+  700: #cc5e13,
+  800: #b35511,
+  900: #8a430e,
+  A100: #ffdac7,
+  A200: #ffb399,
+  A400: #ff8c6b,
+  A700: #ff7a51,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
+
+$term-sheet-custom-palette: mat.m2-define-palette($term-sheet-custom-palette-primary);
+
+$term-sheet-theme: mat.m2-define-light-theme(
+  (
+    color: (
+      primary: $term-sheet-custom-palette,
+      accent: $term-sheet-custom-palette,
+      tertiary: mat.$blue-palette,
+    ),
+  )
+);
+
+:root {
+  @include mat.all-component-themes($term-sheet-theme);
+}
