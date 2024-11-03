@@ -1,27 +1,82 @@
-# TermSheetChallenge
+<h1>TermSheet</h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.2.
+<h3 align="center">
+    <b>Visualize and create deals!</b>  
+    <br>
+</h3>
 
-## Development server
+<p align="center">
+  <a href="https://nodejs.org/en/" target="_blank">
+    <img alt="Node.js version" src="https://img.shields.io/badge/node-v20.11.1-74AB63">
+  </a>
+  <a href="https://www.angular.io.com/" target="_blank">
+    <img alt="Angular version" src="https://img.shields.io/badge/npm-v10.2.4-CB3837">
+  </a>
+  <a href="https://www.npmjs.com/" target="_blank">
+    <img alt="NPM version" src="https://img.shields.io/badge/angular-v18.1.0-C53730">
+  </a>
+  <a href="https://www.linkedin.com/in/gustavodomingueti/" target="_blank">
+    <img alt="Made by Gustavo Domingueti" src="https://img.shields.io/badge/made%20by-Gustavo%20Domingueti-0078D7">
+  </a>
+</p>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<p align="center">
+  <a href="#about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#how-to-use">How to use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+</p>
 
-## Code scaffolding
+<a id="about"></a>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## :bookmark: About
 
-## Build
+The <strong>TermSheet</strong> is a Web and Mobile application that allows real estate professionals to manage their real estate deals.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+<a id="technologies"></a>
 
-## Running unit tests
+## :rocket: Technologies and libraries
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The project was developed using the following technologies and libraries:
 
-## Running end-to-end tests
+- [TypeScript](https://www.typescriptlang.org/)
+- [Angular](https://angular.io/)
+- [Angular Material](https://material.angular.io/)
+- [Rxjs](https://www.learnrxjs.io/)
+- [TailwindCSS](https://tailwindcss.com/)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+<a id="how-to-use"></a>
 
-## Further help
+## :fire: How to use
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- ### **Prerequisites**
+
+  - It is **necessary** to have **[Node.js](https://nodejs.org/en/)** installed on the machine in the lts version.
+  - Also, you **need** to have a package manager be it **[NPM](https://www.npmjs.com/)** or **[Yarn](https://yarnpkg.com/)**.
+
+1. Clone the repository:
+
+```sh
+  $ git clone git@github.com:dominguetigs/termsheet.git
+```
+
+2. Run the Application:
+
+```sh
+  # Install the dependencies
+  $ npm install
+
+  # Initialize the application
+  $ npm run start:open
+
+  # If you want to run externally on a mobile device
+  $ npm run start:host
+```
+
+---
+
+<h4 align="center">
+    Done with 💙 by <a
+      href="https://www.linkedin.com/in/gustavodomingueti/"
+      target="_blank"
+    >Gustavo Domingueti</a>
+</h4>
