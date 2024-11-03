@@ -7,6 +7,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { provideNgxMask } from 'ngx-mask';
 
+import { provideToastr } from 'ngx-toastr';
+
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -15,6 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     provideNgxMask(),
+    provideToastr(),
 
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,

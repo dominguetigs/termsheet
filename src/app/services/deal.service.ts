@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 
+import { BehaviorSubject } from 'rxjs';
+
+import { ToastrService } from 'ngx-toastr';
+
 import { DEALS } from '../constants/deals';
 import { Deal } from '../types/deal';
-import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +13,7 @@ import { BehaviorSubject } from 'rxjs';
 export class DealService {
   private _deals!: BehaviorSubject<Deal[]>;
 
-  constructor() {
+  constructor(private _toastrService: ToastrService) {
     this._deals = new BehaviorSubject(DEALS);
   }
 
@@ -20,5 +23,6 @@ export class DealService {
 
   addDeal(deal: Deal): void {
     this._deals.next([...this._deals.value, deal]);
+    this._toastrService.success('Deal added successfully');
   }
 }
