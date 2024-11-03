@@ -15,7 +15,7 @@
   <a href="https://www.npmjs.com/" target="_blank">
     <img alt="NPM version" src="https://img.shields.io/badge/angular-v18.1.0-C53730">
   </a>
-  <a href="https://www.linkedin.com/in/gustavodomingueti/" target="_blank">
+  <a href="https://www.linkedin.com/in/dominguetigs/" target="_blank">
     <img alt="Made by Gustavo Domingueti" src="https://img.shields.io/badge/made%20by-Gustavo%20Domingueti-0078D7">
   </a>
 </p>
