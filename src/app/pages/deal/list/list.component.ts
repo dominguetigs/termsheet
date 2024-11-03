@@ -63,7 +63,7 @@ export class DealListComponent implements OnInit {
           return;
         }
 
-        this.dataSource.filter = this.filter.nativeElement.value;
+        this.dataSource.filter = this.filter.nativeElement.value.trim();
       });
 
     fromEvent(this.filterByPrice?.nativeElement, 'keyup')
@@ -114,6 +114,9 @@ export class DealListComponent implements OnInit {
       return;
     }
 
-    this.dataSource.filterByPrice = [this.priceCondition(), this.filterByPrice.nativeElement.value];
+    this.dataSource.filterByPrice = [
+      this.priceCondition(),
+      this.filterByPrice.nativeElement.value.trim(),
+    ];
   }
 }
